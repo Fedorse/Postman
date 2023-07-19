@@ -1,0 +1,620 @@
+{
+	"info": {
+		"_postman_id": "716a82cd-7d7d-453d-ab14-6d7ce3364552",
+		"name": "Reqres",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23879829",
+		"_collection_link": "https://www.postman.com/descent-module-physicist-35045625/workspace/my-workspace/collection/23879829-716a82cd-7d7d-453d-ab14-6d7ce3364552?action=share&creator=23879829&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "LIST USERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"number of users per page\", function () {",
+									"    var useres = pm.response.json().data;",
+									"    pm.expect(useres.length).to.eql(6);",
+									"});",
+									"",
+									"",
+									"pm.test(\"page number check\", function () {",
+									"    var response = pm.response.json();",
+									"    var expectedPage = 2;",
+									"    pm.expect(response.page).to.equal(expectedPage);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlReqres}}api/users?page=2",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Checking for Required Fields\", function () {",
+									"    var userData = pm.response.json().data;",
+									"    pm.expect(userData).to.have.property(\"id\");",
+									"    pm.expect(userData).to.have.property(\"email\");",
+									"    pm.expect(userData).to.have.property(\"first_name\");",
+									"    pm.expect(userData).to.have.property(\"last_name\");",
+									"    pm.expect(userData).to.have.property(\"avatar\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlReqres}}api/users/2",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SINGLE USER NOT FOUND",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 404\", function () {",
+									"    pm.response.to.have.status(404);});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlReqres}}api/users/23",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"users",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST RESOURCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"number of users per page\", function () {",
+									"    var useres = pm.response.json().data;",
+									"    pm.expect(useres.length).to.eql(6);",
+									"});",
+									"",
+									";",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlReqres}}api/unknown",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"unknown"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SINGLE RESOURCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlReqres}}api/unknown/2",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"unknown",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SINGLE RESOURCE NOT FOUND",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 404\", function () {",
+									"    pm.response.to.have.status(404);});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlReqres}}api/unknown/23",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"unknown",
+								"23"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "CREATE USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Checking if all fields are present\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response.name).to.exist;",
+									"    pm.expect(response.job).to.exist;",
+									"    pm.expect(response.id).to.exist;",
+									"    pm.expect(response.createdAt).to.exist;",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"leader\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/users",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Checking the token after registration\", function () {",
+									"    var responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody).to.have.property(\"token\");",
+									"",
+									"    pm.expect(responseBody.token).to.not.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"pistol\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/register",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER - UNSUCCESSFUL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Checking for an error when there is no password\", function () {",
+									"    var responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody).to.have.property(\"error\");",
+									"",
+									"    pm.expect(responseBody.error).to.equal(\"Missing password\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sydney@fife\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/register",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN - SUCCESSFUL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Checking the token after registration\", function () {",
+									"    var responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody).to.have.property(\"token\");",
+									"",
+									"    pm.expect(responseBody.token).to.not.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"cityslicka\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/login",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN - UNSUCCESSFUL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Checking for an error when there is no password\", function () {",
+									"    var responseBody = pm.response.json();",
+									"",
+									"    pm.expect(responseBody).to.have.property(\"error\");",
+									"",
+									"    pm.expect(responseBody.error).to.equal(\"Missing password\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"peter@klaven\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/login",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "UPDATE USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Checking if all fields are present\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response.name).to.exist;",
+									"    pm.expect(response.job).to.exist;",
+									"    pm.expect(response.updatedAt).to.exist;",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/users/2",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PATCH",
+			"item": [
+				{
+					"name": "UPDATE USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response code check 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Checking if all fields are present\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response.name).to.exist;",
+									"    pm.expect(response.job).to.exist;",
+									"    pm.expect(response.updatedAt).to.exist;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlReqres}}api/users/2",
+							"host": [
+								"{{urlReqres}}api"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_reqres",
+			"value": "https://reqres.in/",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
