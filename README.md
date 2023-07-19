@@ -1,7 +1,7 @@
 # Описание тестирования различных API
 Данный репозиторий содержит коллекции и окружения с переменными для тестирования различных API 
 # Тестирование API Petstore
-- https://petstore.swagger.io/#/user/logoutUser. Это сайт с открытым API 
+  https://petstore.swagger.io/#/user/logoutUser. Это сайт с открытым API 
 - ## Petstore User API Collection:
   Эта коллекция содержит запросы для работы с пользователями.
 - ## Petstore User API Environment:
