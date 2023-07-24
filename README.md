@@ -8,7 +8,7 @@
   В окружении определены переменные, которые используются при тестировании API Petstore.
   Во время тестирования я проверил различные сценарии и валидировал ответы API.
 # API Restful-Booker
-  Открытое API для работы с бронированием.
+  Открытое API для работы с бронированием.  
   Ссылка для сайта:[Restful-Booker](https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking)
 - ## Restful-Booker Booking API Collection
   Коллекция содержит запросы и тесты  для работы с бронированием номеров в отеле.
